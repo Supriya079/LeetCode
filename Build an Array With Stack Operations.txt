@@ -1,0 +1,12 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        vector<string> ops;
+        for (int i = 1, t = 0; t < target.size() && i <= n; ++i) {
+            ops.push_back("Push");
+            if (target[t] == i) ++t;
+            else ops.push_back("Pop");
+        }
+        return ops;
+    }
+};
