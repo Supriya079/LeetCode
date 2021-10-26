@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        stack<int> stk;
+        unordered_map<int, int> m; // hashmap of an num to its next greater number
+        for(auto n: nums2){
+            while(!stk.empty() && stk.top() < n){
+                m[stk.top()] = n;
+                stk.pop();
+            }
+            stk.push(n);
+        }
+        
+        vector<int> ans;
+        for(auto n: nums1)
+            ans.push_back(m.count(n) ? m[n]: -1);        
+        return ans;
+    }
+};
