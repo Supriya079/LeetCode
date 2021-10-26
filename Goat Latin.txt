@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string toGoatLatin(string sentence) {
+        stringstream ss(sentence), ans;
+        string str;
+        int count = 1;
+        
+        while(ss >> str){
+            if(str[0]=='a' || str[0]=='A' || str[0]=='e' || str[0]=='E' ||str[0]=='i' ||str[0]=='I' ||str[0]=='o' ||str[0]=='O' ||str[0]=='u' ||str[0]=='U'){
+                str += "ma";
+            }else{
+                str += str[0];
+                str.erase(str.begin());
+                str += "ma";
+            }
+            str += string(count++,'a')+" ";
+            ans << str;
+        }
+        
+        return ans.str().substr(0,ans.str().length()-1);
+    }
+};
