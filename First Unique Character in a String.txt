@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        //Brute force
+        // for(int i=0;i<s.size();i++){
+        //     int found = 0;
+        //     for(int j=0;j<s.size();j++){
+        //         if(s[i]==s[j]&&i!=j){
+        //             found = 1;
+        //             break;
+        //         }
+        //     }
+        //     if(found == 0){
+        //         return i;
+        //     }
+        // }
+        //return -1;
+        
+        //Optimal Solution
+        map<char,int> counter;
+        for(int i=0;i<s.size();i++){
+            char ch = s[i];
+            counter[ch]++;
+        }
+        for(int i=0;i<s.size();i++){
+            if(counter[s[i]]==1){
+                return i;
+            }
+        }
+        return -1;        
+    }
+};
