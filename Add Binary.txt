@@ -1,0 +1,87 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string ans = "";
+
+        int m = a.size(), n = b.size();
+
+        int carry = 0;
+        while(m and n){
+        
+            if(a[m-1] == '1' and b[n-1] == '1'){
+                if(carry){
+                    ans += '1';
+                    carry = 1;
+                }
+                else{
+                    ans += '0';
+                    carry = 1;
+                }
+            }
+            else if(a[m-1] == '1' and b[n-1] == '0' or a[m-1] == '0' and b[n-1] == '1'){
+                if(carry){
+                    ans += '0';
+                    carry = 1;
+                }
+                else{
+                    ans += '1';
+                }
+            }
+            else {
+                if(carry){
+                    ans += '1';
+                    carry = 0;
+                }
+                else{
+                    ans += '0';
+                }
+            }
+            m--;   n--;
+        }
+        while(m){
+            if(a[m-1] == '1'){
+                if(carry){
+                    ans += '0';
+                }
+                else{
+                    ans += '1';
+                }
+            }
+            else{
+                if(carry){
+                    ans += '1';
+                    carry = 0;
+                }
+                else{
+                    ans += '0';
+                }
+            }
+            m--;
+        }
+        while(n){
+            if(b[n-1] == '1'){
+                if(carry){
+                    ans += '0';
+                }
+                else{
+                    ans += '1';
+                }
+            }
+            else{
+                if(carry){
+                    ans += '1';
+                    carry = 0;
+                }
+                else{
+                    ans += '0';
+                }
+            }
+            n--;
+        }
+        if(carry){
+            ans += '1';
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
