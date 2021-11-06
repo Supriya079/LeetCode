@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool hasGroupsSizeX(vector<int>& deck) {
+        unordered_map<int,int> m;
+        int gd;
+        if(deck.size()==1) return false;
+
+        for(auto it:deck) m[it]++;
+
+        gd=m[deck[0]];
+
+        for(auto it:m) gd=gcd(gd,it.second);
+
+        if(gd==1) return false;
+        return true;
+    }
+};
