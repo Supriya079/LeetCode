@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+        unordered_map<char, int> mp;
+        for (int i = 0; i < order.size(); ++i)
+            mp[order[i]] = i + 1;
+        int n = words.size();
+        if (n == 1)
+            return true;
+        for (int i = 0; i < n - 1; ++i)
+        {
+            string s1 = words[i];
+            string s2 = words[i + 1];
+            int m1 = s1.size();
+            int m2 = s2.size();
+            int p = 0, q = 0;
+            bool flag = false;
+            while (p < m1 and q < m2)
+            {
+                if (mp[s2[q]] == mp[s1[p]])
+                {
+                    ++p;
+                    ++q;
+                    continue;
+                }
+                else if (mp[s2[q]] > mp[s1[p]])
+                {
+                    flag = true;
+                    break;
+                }
+                else if (mp[s2[q]] < mp[s1[p]])
+                    return false;
+            }
+            if (!flag)
+            {
+                if (m1 > m2)
+                    return false;
+            }
+        }
+        return true;
+    }
+};
