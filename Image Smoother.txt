@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+        const int n = img.size();
+        const int m = img[0].size();
+        vector<vector<int>> res(n, vector<int>(m));
+        for (int y = 0; y < n; ++y) {
+            for (int x = 0; x < m; ++x) {
+                int count {0};
+                for (int i = -1; i <= 1; ++i) {
+                    for (int j = -1; j <= 1; ++j) {
+                        const int dy {y + i};
+                        const int dx {x + j};
+                        if (dy >= 0 && dy < n && dx >= 0 && dx < m) {
+                            res[y][x] += img[dy][dx];
+                            ++count;
+                        }
+                    }
+                }
+                res[y][x] /= count;
+            }
+        }
+        return res;
+    }
+};
