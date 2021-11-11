@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        if(nums1.size()>nums2.size())           // adjusting to find the least length vector as first parameter
+            return intersect(nums2,nums1);
+        
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+        vector<int> ans;        // vector to store answer
+        
+        for(int i=0;i<n1;i++)
+        {   // iterating through the minimum length array
+            vector<int>::iterator it = find(nums2.begin(),nums2.end(),nums1[i]);
+            // find whether the element in the 1st vector is present in the 2nd vector
+            
+            if(it!=nums2.end())     // if present
+            {
+                ans.push_back(nums1[i]);    // push it into the answer vector
+                nums2.erase(it);            // after pushing deleting that element from the 2nd vector
+            }       
+        }
+        
+        return ans;
+    }
+};
