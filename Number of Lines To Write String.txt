@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> numberOfLines(vector<int>& widths, string s) {
+        int lineCount = 0,  currLineWidth = 0;
+        for (const auto ch : s) {
+            int width = widths[ch - 'a'];
+            if (currLineWidth + width > 100) {
+                lineCount++;
+                currLineWidth = width;
+            }else {
+                currLineWidth += width;
+            }
+        }
+        return currLineWidth == 0 ? 
+            vector<int>{lineCount, 0} : vector<int>{lineCount + 1, currLineWidth};
+    }
+};
