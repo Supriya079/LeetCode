@@ -1,0 +1,22 @@
+class Solution {
+public:
+    char slowestKey(vector<int>& releaseTimes, string keysPressed) {
+        int maxDuration = releaseTimes[0];
+        char letter = keysPressed[0];
+        int n = keysPressed.size();
+        for (int i = 1; i < n; ++i)
+        {
+            if ((releaseTimes[i] - releaseTimes[i - 1]) >= maxDuration)
+            {
+                if ((releaseTimes[i] - releaseTimes[i - 1]) == maxDuration)
+                {
+                    letter = ((keysPressed[i] - 'a') > (letter - 'a')) ? keysPressed[i] : letter;
+                }
+                else
+                    letter = keysPressed[i];
+                maxDuration = (releaseTimes[i] - releaseTimes[i - 1]);
+            }
+        }
+        return letter;
+    }
+};
