@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        unordered_set<string> st;
+        int n = emails.size();
+        
+        for(int i=0; i<n; i++){
+            string s = "";
+            int j = 0;
+            int flag1 = 0;
+            int flag2 = 0;
+            // here we will use one variable from which i can know that character from a to 
+			// z are before + sign and between + and @ sign .
+			// and from another variable we will know that 
+			// either dot is before @ sign or dot is after @ sign.
+			
+            while(j < emails[i].size()){
+                if(emails[i][j] == '.'){
+                    if(flag2 == 0){
+                        j++;
+                        continue;    
+                    }
+                    else{
+                        s += emails[i][j];
+                    }
+                }
+                if(emails[i][j] == '+'){
+                    flag1 = 1;
+                }
+                if(emails[i][j] == '@'){
+                    flag1 = 0;
+                    s += emails[i][j];
+                    flag2 = 1;
+                }
+                if(emails[i][j] >= 'a' and emails[i][j] <= 'z' and flag1 == 0){
+                    s += emails[i][j];
+                }
+                j++;
+            }
+            st.insert(s);
+        }
+        return st.size();
+    }
+};
