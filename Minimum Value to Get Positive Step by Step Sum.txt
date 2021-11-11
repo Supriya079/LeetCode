@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        // startValue must be positive
+        int start=1;    
+        //the current sum must be equal startValue at the beginning
+        int sum=start;  
+        
+        //traverse the array
+        for (auto x:nums){ 
+            sum+=x;
+            // if current sum is less than 1, the startValue must be increased to a value that
+            // current sum is 1
+            if (sum<1){
+                start+=1-sum;
+                sum=1;
+            }
+        }
+        
+        return start;
+    }
+};
