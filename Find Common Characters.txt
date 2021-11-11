@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+        vector<char>v;
+        for(int i=0;i<words[0].size();i++)
+        {
+            v.push_back(words[0][i]);
+        }
+        for(int i=1;i<words.size();i++)
+        {
+            for(int j=0;j<v.size();j++)
+            {
+                if(find(words[i].begin(),words[i].end(),v[j])==words[i].end())
+                {
+                    v.erase(v.begin()+j);
+                    j--;
+                }
+                else
+                {
+                    words[i].erase(find(words[i].begin(),words[i].end(),v[j]));
+                }
+            }
+        }
+        vector<string>ans;
+        for(int i=0;i<v.size();i++)
+        {
+            string str="";
+            str+=v[i];
+          ans.push_back(str);
+
+        }
+        return ans;
+    }
+};
