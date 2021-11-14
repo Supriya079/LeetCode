@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minTimeToType(string word) {
+        int pos = 0, res = 0;
+        for(int i = 0; i < word.length(); ++i) {
+            
+            int m1 = abs((word[i] - 'a') - pos);
+            int m2 = abs(26 - m1);
+            res += (min(m1, m2) + 1);
+            pos = word[i] - 'a';
+        }
+        
+        return res;
+    }
+};
