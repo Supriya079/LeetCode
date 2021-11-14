@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool areNumbersAscending(string s) {
+       int c=INT_MIN;
+        for(int i=0;i<s.length();i++){
+            if(isdigit(s[i])){
+                string str="";
+                while(isdigit(s[i])){
+                    str+=s[i];
+                    i++;
+                }
+                if(c<stoi(str)){
+                    c=stoi(str);
+                }else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
