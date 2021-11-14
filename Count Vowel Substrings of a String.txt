@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int countVowelSubstrings(string w) {
+        int n=w.size();
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            set<char>s;
+            for(int j=i;j<n;j++)
+            {
+                if(w[j]=='a'||w[j]=='e'||w[j]=='i'||w[j]=='o'||w[j]=='u')
+                {
+                 s.insert(w[j]);  
+                 if(s.size()==5)
+                 ans++;
+                }
+                else
+                break;
+            } 
+        } 
+       return ans;
+    }
+};
