@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        // find the index of the largest element
+        int index=0;
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]>nums[index])
+            {
+                index=i;
+            }
+        }
+        // check whether it's atleast twice big the other elements or not
+        for(int i=0;i<nums.size();i++)
+        {
+            if(2*nums[i]>nums[index] && i!=index)
+            {
+                return -1;
+            }
+        }
+        return index;
+    }
+};
