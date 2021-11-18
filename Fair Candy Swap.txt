@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& alice, vector<int>& bob) {
+        vector<int> result;
+        set<int> s;
+        int n = alice.size(), m = bob.size();
+
+        int alicesum = 0 , bobsum = 0;
+
+        for(int i=0 ; i<n ; ++i) alicesum += alice[i];
+
+        for(int j=0 ; j<m ; ++j)
+        {
+            bobsum += bob[j];
+            s.insert(bob[j]);
+        }
+
+        // y = x + (bobsum-alicesum)/2;
+        int temp = (bobsum - alicesum)/2;
+        for(int i=0 ; i<n ; ++i)
+        {
+            // y = alice[i] + temp;
+
+            auto it = s.find(alice[i]+temp);
+            if(it != s.end())
+            {
+                result.push_back(alice[i]);
+                result.push_back(alice[i] + temp);
+                return result;
+            }
+        }
+        return result;
+    }
+};
