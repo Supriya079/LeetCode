@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& nums) {
+        // map to store the frequencies
+        unordered_map<int,int>m;
+        
+        // map to store the first and the last occurence of an element
+        unordered_map<int,vector<int>>dict;
+        
+        // d is the degree of the array and ans is the answer
+        int d=0,ans=INT_MAX;
+        
+        // populate the frequnecy map and calculate the degree
+        for(int i=0;i<nums.size();i++)
+        {
+            m[nums[i]]++;
+            d=max(d,m[nums[i]]);
+        }
+        
+        // store the first occurence of the elements which has frequency=degree of the whole array
+        for(int i=0;i<nums.size();i++)
+        {
+            if(m[nums[i]]==d)
+            {
+                if(dict.find(nums[i])==dict.end())
+                {
+                    dict[nums[i]].push_back(i);
+                }
+            }
+        }
+        
+        // take the last occurence of the elements (having frequency=degree of the whole array) and calculate the length of a potential sub-array
+        for(int i=nums.size()-1;i>=0;i--)
+        {
+            if(m[nums[i]]==d)
+            {
+                if(dict[nums[i]].size()==1)
+                {
+                    ans=min(ans,abs(i-dict[nums[i]][0])+1);
+                    dict[nums[i]].push_back(i);
+                }
+            }
+        }
+        
+        // finally return the answer
+        return ans;
+    }
+};
