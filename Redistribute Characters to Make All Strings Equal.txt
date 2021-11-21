@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        unordered_map<char, int> freq;
+        for (auto word : words)
+            for (auto ch : word)
+                freq[ch]++;
+        
+        int n = words.size();
+        for (auto [ch, fr] : freq)
+            if (fr % n) return false;
+        
+        return true;
+    }
+};
