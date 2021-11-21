@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int numDifferentIntegers(string word) {
+        unordered_set<string> s;
+        word += ' ';
+        int n = word.length();
+        int i=0;
+        while(i < n)
+        {
+            string num = "";
+            if(!isdigit(word[i]))
+            {
+                i++;
+                continue;
+            }
+            while(isdigit(word[i]))
+            {
+                num = word[i]+ num;
+                i++;
+            }
+            if(num.length() != 0)
+            {
+                int j = num.length() - 1;
+                //while finding the number, we need to consider a case"1", "01" , "001" are equal numbers, so after finding the string temp, we remove the zeroes at start. so that we can make those numbers same
+                while(num[j] == '0' && j >0) 
+                {
+                    j--;
+                }
+                if(num.length()==0) num = '0';
+                string finval = num.substr(0, j+1);
+                s.insert(finval);
+            }
+            i++;
+        }
+        return s.size();
+    }
+};
