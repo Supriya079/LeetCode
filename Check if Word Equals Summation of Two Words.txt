@@ -1,0 +1,11 @@
+class Solution {
+public:
+        bool isSumEqual(string firstWord, string secondWord, string targetWord) {
+            int x=0 , y=0 , z=0;
+            for(auto i : firstWord) x=x*10+(i-'a');
+            for(auto i : secondWord) y=y*10+(i-'a');
+            for(auto i : targetWord) z=z*10+(i-'a');
+            return x+y==z;
+        }
+};
+   
