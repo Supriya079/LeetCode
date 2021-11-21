@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool checkAlmostEquivalent(string word1, string word2) {
+        std::vector<int> mp(26);
+        for(auto && i : word1){
+            mp[i-'a']++;
+        }
+        for(auto && i : word2){
+            mp[i-'a']--;
+        }
+        for(auto && i : mp){
+            if(abs(i) > 3){
+                return false;
+            }
+        }
+        return true;
+    }
+};
