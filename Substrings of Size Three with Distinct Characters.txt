@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countGoodSubstrings(string s) {
+        string word = "";
+        for(int i=0; i<2; i++){
+            word += s[i];
+        }
+        int count = 0;
+        for(int i=2; i<s.size(); i++){
+            word += s[i];
+            if(word[0] != word[1] and word[1] != word[2] 
+              and word[0] != word[2]){
+                count++;
+            }
+            word.erase(word.begin());
+        }
+        return count;
+    }
+};
