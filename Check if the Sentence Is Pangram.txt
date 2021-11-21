@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        bool freq[26]={};
+        for(auto k:sentence)freq[k-'a']=true;
+        return all_of(freq,freq+26,[](bool curval){return curval;});
+		//It checks for each element, if return value of lambda is true or not
+		//If any one of it is false, then all_of will return false.
+    }
+};
