@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool areAlmostEqual(string s1, string s2) {
+        unordered_map<char, int> mp1, mp2;
+        for(char ch: s1){
+            mp1[ch]++;
+        }
+        for(char ch: s2){
+            mp2[ch]++;
+        }
+        for(auto it=mp1.begin(); it != mp1.end(); it++){
+            if(mp2.find(it->first) != mp2.end()){
+                if(mp2[it->first] != it->second){
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        
+        int count = 0;
+        
+        for(int i=0; i<s1.size(); i++){
+            if(s1[i] != s2[i]){
+                count++;
+            }
+        }
+        if(count == 2 || count == 0){
+            return true;
+        }
+        return false;
+    }
+};
