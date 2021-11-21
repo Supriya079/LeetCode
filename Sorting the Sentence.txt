@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        priority_queue<pair<int, string>,vector<pair<int,string>>, greater<pair<int, string>>>pq;
+        
+        string curr;
+        for(int i = 0; i<s.length(); i++){
+            if(s[i] == ' ')continue;
+            if(s[i]>='1' and s[i]<='9'){
+                pq.push({s[i]-'0', curr});
+                curr.clear();
+                continue;
+            }
+            curr.push_back(s[i]);
+        }
+        
+        s = "";
+        while(pq.empty() == false){
+            s+=(pq.top().second);
+            s.push_back(' ');
+            pq.pop();
+        }
+        s.pop_back();
+        
+        return s;
+    }
+};
