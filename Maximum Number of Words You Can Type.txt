@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int canBeTypedWords(string text, string brokenLetters) {
+        unordered_map<char,int> m;
+        for(auto i: brokenLetters) {
+            m[i]++;
+        }
+        vector<string>v;
+        string str = "";
+        for(auto i: text) {
+            if(i == ' ') {
+                v.push_back(str);
+                str = "";
+            } else {
+                str += i;
+            }
+        }
+        int ans =0;
+        v.push_back(str);
+        for(auto i: v) {
+            bool flag = true;
+            for(auto j: i) {
+                if(m.find(j) != m.end()) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) ans++;
+        }
+        return ans;
+    }
+};
