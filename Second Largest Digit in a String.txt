@@ -1,0 +1,24 @@
+class Solution {
+public:
+        int secondHighest(string s) {
+        int ans=-1;
+        int max=-1;
+        for(auto i:s){
+           if(isdigit(i)==false){
+               continue;
+           }
+            else{
+               auto a=i-'0';
+               if(a>ans){
+                   if(a>max){
+                      ans=max;
+                      max=a; 
+                   }else if(max!=a){
+                       ans=a;
+                   }
+               } 
+            }
+        }
+       return ans; 
+    }
+};
