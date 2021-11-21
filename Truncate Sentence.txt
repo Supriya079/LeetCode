@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string truncateSentence(string s, int k) {
+        int i;
+        for(i=0;i<s.length();i++){
+            if(s[i]==' '){
+                k--;
+                if(!k){
+                    break;
+                }
+            }
+        }
+        s.erase(i,s.length());
+        return s;
+    }
+};
