@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        int n = points.size();
+        if(n <2 ) return n;
+        
+        int maxCounter = 0;
+        // Picked first point as Pi
+        for(int i=0; i< n-1; i++){
+            // Picked second point as Pj
+            unordered_map<string, int>  slopeMap;
+            int overlappingPoints = 0 , verticalPoints  = 0, counter  = 0 ;
+            for(int j = i+1; j<n ; j++ ){
+                // if Pi and Pj they are same point
+                if ( points[i][0] == points[j][0] &&  points[i][1] ==points[j][1] ){
+                    overlappingPoints++;
+                }
+                // if Pi and Pj they are on same vertical line
+                else if( points[i][0] == points[j][0] ){
+                    verticalPoints++;
+                }else{
+                    int yDiff = points[j][1] - points[i][1];
+                    int xDiff = points[j][0] - points[i][0];
+ 
+                    int hcf = __gcd(yDiff, xDiff );
+ 
+                    yDiff = yDiff/hcf;
+                    xDiff = xDiff/hcf;
+ 
+                    string slope = to_string(yDiff)+"/"+to_string(xDiff);
+                    slopeMap[ slope ]++; // intitially will be zero
+                    counter = max ( counter , slopeMap[ slope ] );
+                }
+                counter = max(counter, verticalPoints );
+            }
+            maxCounter = max( maxCounter, counter + overlappingPoints + 1 );
+        }
+ 
+        return maxCounter;
+    }
+};
